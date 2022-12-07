@@ -1,7 +1,6 @@
-from django.urls import path
-from . import views
+from django.conf.urls import url
+from .views import BoardView
 
 urlpatterns = [
-    path('', views.index, name='index'),
-    path('next', views.next, name='next'),
+    url(r'', BoardView.as_view(), name='index'),
 ]
