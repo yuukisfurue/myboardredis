@@ -13,11 +13,21 @@
         {{title}}</h1>
     <table class="table">
         <tr>
-            <th>data</th><th></th><th></th>
+            <th>ID</th>
+            <th>NAME</th>
+            <th>GENDER</th>
+            <th>address</th>
+            <th>AGE</th>
+            <th>jyob</th>
         </tr>
-    {% for item in data %}
+        {% for item in data %}
         <tr>
-            <td>{{item}}</td>
+            <td>{{item.id}}</td>
+            <td>{{item.name}}</td>
+            <td>{{item.gender}}</td>
+            <td>{{item.address}}</td>
+            <td>{{item.age}}</td>
+            <td>{{item.jyob}}</td>
             <td><a href="{% url 'edit' item.id %}">Edit</a></td>
             <td><a href="{% url 'delete' item.id %}">Delete</a></td>
         <tr>
