@@ -13,6 +13,10 @@ class BoardForm(forms.Form):
     jyob = forms.DateField(label='Jyob', \
         widget=forms.DateInput(attrs={'class':'form-control'}))
 
+class FindForm(forms.Form):
+        find = forms.CharField(label='Find', required=False, \
+        widget=forms.TextInput(attrs={'class':'form-control'}))
+
 class FriendForm(forms.ModelForm):
     class Meta:
         model = Friend

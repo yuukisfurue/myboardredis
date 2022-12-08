@@ -10,18 +10,28 @@
 </head>
 <body class="container">
     <h1 class="display-4 text-primary">
-        {{title}}</h1>
+        Friends List</h1>
     <table class="table">
         <tr>
-            <th>data</th><th></th><th></th>
+            <th>id</th>
+            <th>{{object.id}}</th>
         </tr>
-    {% for item in data %}
         <tr>
-            <td>{{item}}</td>
-            <td><a href="{% url 'edit' item.id %}">Edit</a></td>
-            <td><a href="{% url 'delete' item.id %}">Delete</a></td>
+            <th>name</th>
+            <td>{{object.name}}</td>
+        </tr>
         <tr>
-    {% endfor %}
+            <th>address</th>
+            <td>{{object.address}}</td>
+        </tr>
+        <tr>
+            <th>gender</th>
+            <td>{{object.gender}}</td>
+        </tr>
+        <tr>
+            <th>age</th>
+            <td>{{object.age}}</td>
+        </tr>
     </table>
 </body>
 </html>
