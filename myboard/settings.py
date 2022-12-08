@@ -78,7 +78,7 @@ WSGI_APPLICATION = 'myboard.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'janboard',
+        'NAME': 'jboard',
         'USER': 'yuukifurue',
         'PASSWORD': '012tU(qr9scretX@ijos8U9P87',
         'HOST': 'localhost',
