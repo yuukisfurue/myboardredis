@@ -1,9 +1,20 @@
 from django import forms
+from.models import Friend
 
 class BoardForm(forms.Form):
-    name = forms.CharField(label='name', \
+    name = forms.CharField(label='Name', \
         widget=forms.TextInput(attrs={'class':'form-control'}))
-    address = forms.CharField(label='address', \
+    address = forms.CharField(label='Address', \
         widget=forms.TextInput(attrs={'class':'form-control'}))
-    age = forms.IntegerField(label='age', \
+    gender = forms.CharField(label='Gender', \
+        widget=forms.TextInput(attrs={'class':'form-control'}))
+    age = forms.IntegerField(label='Age', \
         widget=forms.NumberInput(attrs={'class':'form-control'}))
+    jyob = forms.DateField(label='Jyob', \
+        widget=forms.DateInput(attrs={'class':'form-control'}))
+
+class FriendForm(forms.ModelForm):
+    class Meta:
+        model = Friend
+        fields = ['name','address','gender','age','jyob']
+        
