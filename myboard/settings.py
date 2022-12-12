@@ -78,7 +78,7 @@ WSGI_APPLICATION = 'myboard.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'janboard',
+        'NAME': 'mydjanboard',
         'USER': 'yuukifurue',
         'PASSWORD': '012tU(qr9scretX@ijos8U9P87',
         'HOST': 'localhost',
@@ -129,3 +129,14 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Django3の時のredisの設定
+CACHES = {
+    'default': {
+        'BACKEND': 'django_redis.cache.RedisCache',
+        'LOCATION': 'redis://redis:6379', # ここを変える
+        'OPTIONS': {
+            'CLIENT_CLASS': 'django_redis.client.DefaultClient'
+        }
+    }
+}
