@@ -1,7 +1,7 @@
 # myboardredis
 
-![image](https://user-images.githubusercontent.com/101452760/206976202-49cf6612-f952-40e4-87ee-d7e7f18fbb26.png)
-
 ページネータ入りのCURDとなります。
 今回はsettig.pyにredisを用いています。
 次回コミット時にCSVも追加予定です
+
+![Screenshot from 2022-12-12 15-31-14](https://user-images.githubusercontent.com/101452760/206976883-6fab5f2a-aa08-4a09-948b-b040a8de2971.png)
