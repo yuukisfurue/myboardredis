@@ -8,7 +8,7 @@
     href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
     crossorigin="anonymous">
 </head>
-<body class="container">
+body class="container">
     <h1 class="display-4 text-primary">
         {{title}}</h1>
     <p>{{message|safe}}</p>
@@ -22,15 +22,21 @@
     <hr>
     <table class="table">
         <tr>
-            <th>id</th>
-            <th>name</th>
-            <th>address</th>
+            <th>ID</th>
+            <th>氏名</th>
+            <th>性別</th>
+            <th>住所</th>
+            <th>年齢</th>
+            <th>職種</th>
         </tr>
-    {% for item in data %}
+        {% for item in data %}
         <tr>
-            <th>{{item.id}}</th>
-            <td>{{item.name}}({{item.age}})</td>
+            <td>{{item.id}}</td>
+            <td>{{item.name}}</td>
+            <td>{{item.gender}}</td>
             <td>{{item.address}}</td>
+            <td>{{item.age}}</td>
+            <td>{{item.jyob}}</td>
         <tr>
     {% endfor %}
     </table>

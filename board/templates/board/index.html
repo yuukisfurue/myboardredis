@@ -11,14 +11,15 @@
 <body class="container">
     <h1 class="display-4 text-primary">
         {{title}}</h1>
+        <td><a href="{% url 'create' %}">新規登録</a></td>
     <table class="table">
         <tr>
             <th>ID</th>
-            <th>NAME</th>
-            <th>GENDER</th>
-            <th>address</th>
-            <th>AGE</th>
-            <th>jyob</th>
+            <th>氏名</th>
+            <th>性別</th>
+            <th>住所</th>
+            <th>年齢</th>
+            <th>職種</th>
         </tr>
         {% for item in data %}
         <tr>
@@ -33,5 +34,52 @@
         <tr>
     {% endfor %}
     </table>
-</body>
+    <ul class="pagination">
+        {% if data.has_previous %}
+        <li class="page-item">
+            <a class="page-link" href="{% url 'index' %}">
+                &laquo; first</a>
+        </li>
+        <li class="page-item">
+            <a class="page-link" 
+            href="{% url 'index' %}{{data.previous_page_number}}">
+                &laquo; prev</a>
+        </li>
+        {% else %}
+        <li class="page-item">
+            <a class="page-link">
+                &laquo; first</a>
+        </li>
+        <li class="page-item">
+            <a class="page-link">
+                &laquo; prev</a>
+        </li>
+        {% endif %}
+        <li class="page-item">
+            <a class="page-link">
+            {{data.number}}/{{data.paginator.num_pages}}</a>
+        </li>
+        {% if data.has_next %}
+        <li class="page-item">
+            <a class="page-link" 
+            href="{% url 'index' %}{{data.next_page_number }}">
+                next &raquo;</a>
+        </li>
+        <li class="page-item">
+            <a class="page-link" 
+            href="{% url 'index' %}{{data.paginator.num_pages}}">
+                last &raquo;</a>
+        </li>
+        {% else %}
+        <li class="page-item">
+            <a class="page-link">
+                next &raquo;</a>
+        </li>
+        <li class="page-item">
+            <a class="page-link">
+                last &raquo;</a>
+        </li>
+        {% endif %}
+    </ul>
+ </body>
 </html>

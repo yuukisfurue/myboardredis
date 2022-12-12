@@ -6,7 +6,11 @@ from .forms import FriendForm
 from django.views.generic import ListView
 from django.views.generic import DetailView
 from .forms import FindForm 
+from django.core.paginator import Paginator
 from django.db.models import Q    # 追記
+from django.db.models import Count,Sum,Avg,Min,Max
+from .forms import CheckForm    #☆
+from django.core.paginator import Paginator
 
 class FriendList(ListView):
     model = Friend
@@ -14,14 +18,17 @@ class FriendList(ListView):
 class FriendDetail(DetailView):
     model = Friend
 
-
-def index(request):
+def index(request, num=1):
     data = Friend.objects.all()
+    page = Paginator(data, 5)
     params = {
         'title': 'Board',
-        'data': data,
+        'message':'',
+        'data': page.get_page(num),
     }
     return render(request, 'board/index.html', params)
+
+
 
 # create model
 def create(request):
@@ -63,11 +70,13 @@ def delete(request, num):
 
 def find(request):
     if (request.method == 'POST'):
-        msg = 'search result:'
+        msg = request.POST['find']
         form = FindForm(request.POST)
-        find = request.POST['find']
-        list = find.split()
-        data = Friend.objects.filter(name__in=list)    #☆
+        sql = 'select * from board_friend'
+        if (msg != ''):
+            sql += ' where ' + msg
+        data = Friend.objects.raw(sql)
+        msg = sql
     else:
         msg = 'search words...'
         form = FindForm()
@@ -79,3 +88,19 @@ def find(request):
         'data':data,
     }
     return render(request, 'board/find.html', params)
+
+def check(request):
+    params = {
+        'title': 'Board',
+        'message':'check validation.',
+        'form': FriendForm(),
+    }
+    if (request.method == 'POST'):
+        obj = Friend()
+        form = FriendForm(request.POST, instance=obj)
+        params['form'] = form
+        if (form.is_valid()):
+            params['message'] = 'OK!'
+        else:
+            params['message'] = 'no good.'
+    return render(request, 'board/check.html', params)

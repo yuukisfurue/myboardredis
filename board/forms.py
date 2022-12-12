@@ -1,5 +1,6 @@
 from django import forms
 from.models import Friend
+from django import forms    #☆
 
 class BoardForm(forms.Form):
     name = forms.CharField(label='Name', \
@@ -22,3 +23,12 @@ class FriendForm(forms.ModelForm):
         model = Friend
         fields = ['name','address','gender','age','jyob']
         
+class CheckForm(forms.Form):
+    str = forms.CharField(label='String', \
+        widget=forms.TextInput(attrs={'class':'form-control'}))
+    
+    def clean(self):
+        cleaned_data = super().clean()
+        str = cleaned_data['str']
+        if (str.lower().startswith('no')):
+            raise forms.ValidationError('You input "NO"!')
